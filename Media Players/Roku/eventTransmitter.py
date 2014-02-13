@@ -58,5 +58,3 @@ def getAppImgs():
 		downloadImages(ID, appName)
 	print 'Done.'
 
-getApps()
-getAppImgs()
