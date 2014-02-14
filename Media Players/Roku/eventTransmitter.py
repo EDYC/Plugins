@@ -1,6 +1,5 @@
 import urllib2
 import sys
-from chanImgPar import ImgDwn
 from selenium import webdriver
 import urllib
 
@@ -30,7 +29,6 @@ def getApps(): # /query/apps requires GET - not POST
 			
 			appName = line.split('>') [1] # Parse App name
 			appName = appName.split('</app') [0]
-			print appName
 			apps[appName] = idNum
 
 def downloadImages(idNum, name):
@@ -58,3 +56,6 @@ def getAppImgs():
 		downloadImages(ID, appName)
 	print 'Done.'
 
+
+getApps()
+getAppImgs()
