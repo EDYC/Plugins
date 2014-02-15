@@ -24,12 +24,16 @@ def getApps(): # /query/apps requires GET - not POST
 
 	for line in l:
 		if '<app ' in line:
-			idNum = line.split('id="') [1] # Parse ID
-			idNum = line.split('"') [1]
+			idNum = re.search(r'id="(\d+)"', line)
+			appName = re.search(r'[>](\w+)[<]', line)
+			apps[appName.group(1)] = idNum.group(1)
 			
-			appName = line.split('>') [1] # Parse App name
-			appName = appName.split('</app') [0]
-			apps[appName] = idNum
+			#idNum = line.split('id="') [1] # Parse ID
+			#idNum = line.split('"') [1]
+			
+			#appName = line.split('>') [1] # Parse App name
+			#appName = appName.split('</app') [0]
+			
 
 def downloadImages(idNum, name):
 	browser = webdriver.Chrome()
