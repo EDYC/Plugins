@@ -2,6 +2,7 @@ import urllib2
 import sys
 from selenium import webdriver
 import urllib
+import re
 
 ip = '192.168.2.7'
 port = '8060'
@@ -26,8 +27,9 @@ def getApps(): # /query/apps requires GET - not POST
 		if '<app ' in line:
 			idNum = re.search(r'id="(\d+)"', line)
 			appName = re.search(r'[>](\w+)[<]', line)
+
 			apps[appName.group(1)] = idNum.group(1)
-			
+
 			#idNum = line.split('id="') [1] # Parse ID
 			#idNum = line.split('"') [1]
 			
