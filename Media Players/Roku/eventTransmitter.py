@@ -25,10 +25,8 @@ def getApps(): # /query/apps requires GET - not POST
 
 	for line in l:
 		if '<app ' in line:
-			idNum = re.search(r'id="(\d+)"', line)
-			appName = re.search(r'[>](\w+)[<]', line)
-
-			apps[appName.group(1)] = idNum.group(1)
+			search = re.search(r'id="(\d+)"[w\W\s]*>([\w\W\s]+)<', line) # Capture any alphanumeric characters, whitespace or non-alphanumeric characters (',-) between '>' and '<'
+			apps[searcg.group(2)] = idNum.group(1)
 
 			#idNum = line.split('id="') [1] # Parse ID
 			#idNum = line.split('"') [1]
